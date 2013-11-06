@@ -1,0 +1,32 @@
+
+
+
+	<form name="newItemForm">
+		<input name="newItemName" ng-model="newItem.message" ng-maxlength="140">
+		<button class="btn btn-primary" 
+			ng-click="add(newItem)"
+			ng-disabled="!newItem.message">new message</button>		
+		<span ng-show="newItemForm.newItemMessage.$error.maxlength">Message is too long!</span>
+		<span ng-show="!newItemForm.newItemMessage.$error.maxlength">{{140 - newItem.message.length}}</span>
+	</form>
+	<hr />
+
+	<ul class="unstyled">
+		<li ng-repeat="item in items">
+			<h2>{{item.message}}</h2>
+			<ul>
+				<li ng-repeat="reply in item.replies">
+					{{reply.message}}
+				</li>
+			</ul>
+			<form name="newReplyForm">
+				<input name="newItemReply" ng-model="newReply.message" ng-maxlength="140">
+				<input type="hidden" id="parent_id" name="parent_id" ng-model="newReply.parent_id" value="{{item.message_id}}" />
+				<button class="btn btn-primary" ng-click="reply(newReply, item.message_id)" ng-disabled="!newReply.message">Reply</button>
+				<span ng-show="newReplyForm.newReplyMessage.$error.maxlength">Message is too long!</span>
+				<span ng-show="!newReplyForm.newReplyMessage.$error.maxlength">{{140 - newReply.message.length}}</span>
+			</form>
+		</li>
+	</ul>
+
+

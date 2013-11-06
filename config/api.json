@@ -1,0 +1,8 @@
+{
+	"messages":"message",
+	"messages/:parent_id/replies":"messageReply",
+	"messages/:id":"message",
+	"member":"members",
+	"member/:id":"member"
+
+}
